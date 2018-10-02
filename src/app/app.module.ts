@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -40,6 +41,10 @@ import { AppRoutingModule } from './app.routing';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ApiService } from './services/api.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [
@@ -47,6 +52,8 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     AppRoutingModule,
     AppAsideModule,
     AppBreadcrumbModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
     AppFooterModule,
     AppHeaderModule,
     AppSidebarModule,
@@ -55,6 +62,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     TabsModule.forRoot(),
     ChartsModule,
     DataTablesModule,
+    HttpClientModule,
     LoadingBarHttpClientModule
   ],
   declarations: [
@@ -65,7 +73,11 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
     LoginComponent,
     RegisterComponent
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    AuthService,
+    FormsModule
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

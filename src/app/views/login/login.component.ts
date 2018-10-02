@@ -21,12 +21,8 @@ export class LoginComponent implements OnInit {
         passWord :[this.data.passWord,Validators.compose([Validators.required])],
       });
   }
-  login() {
-    this.http.get("http://www.saigontech.edu.vn/restful-api/readers-free.php").subscribe(result => {
-      console.log(result);
-    });
-  }
   onSubmit(){
+    console.log(this.data);
     this.authservices.login(this.data).subscribe(result =>{
       console.log(result);
     },error =>{ console.log(error)});

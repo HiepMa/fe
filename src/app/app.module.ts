@@ -46,6 +46,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 
+import {CookieService} from 'ngx-cookie-service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ import { AuthService } from './services/auth.service';
   providers: [
     ApiService,
     AuthService,
-    FormsModule
+    FormsModule,
+    CookieService
   ],
   bootstrap: [ AppComponent ]
 })

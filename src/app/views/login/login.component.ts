@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService, LoginInfo } from '../../services/auth.service';
 import { error } from 'protractor';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   errorMessege;
   public form :FormGroup;
   data : LoginInfo ={} as LoginInfo;
-  constructor(private http: HttpClient,private fb : FormBuilder,private router : Router, private authservices : AuthService) {    
+  constructor(private http: HttpClient,private fb : FormBuilder,private router : Router, private authservices : AuthService,private cookieservice :CookieService) {    
   }
   ngOnInit() {
       this.form = this.fb.group({
@@ -24,7 +25,11 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     console.log(this.data);
     this.authservices.login(this.data).subscribe(result =>{
+      this.cookieservice.set("userInfo",JSON.stringify(result));
+      //redirect the homepage
+      this.router.navigate(['/dashboard']);
+      this.errorMessege = "";
       console.log(result);
-    },error =>{ console.log(error)});
+    },error =>{ this.errorMessege = "Sai Username hoac PassWord"});
   }
  }

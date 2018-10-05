@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     console.log(this.data);
     this.authservices.login(this.data).subscribe(result =>{
       this.cookieservice.set("userInfo",JSON.stringify(result));
+      this.authservices.setLoggedIn(true);
       //redirect the homepage
       this.router.navigate(['/dashboard']);
       this.errorMessege = "";

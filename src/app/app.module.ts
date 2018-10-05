@@ -47,6 +47,7 @@ import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 
 import {CookieService} from 'ngx-cookie-service';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   imports: [
@@ -79,7 +80,8 @@ import {CookieService} from 'ngx-cookie-service';
     ApiService,
     AuthService,
     FormsModule,
-    CookieService
+    CookieService,
+    AuthGuard
   ],
   bootstrap: [ AppComponent ]
 })

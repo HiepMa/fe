@@ -82,6 +82,7 @@ import { AuthGuard } from './auth.guard';
     FormsModule,
     CookieService,
     AuthGuard
+    
   ],
   bootstrap: [ AppComponent ]
 })

@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from "@angular/common/http";
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders, HttpResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
+import { error } from "@angular/compiler/src/util";
+import {tap } from 'rxjs/operators/tap'
 
 @Injectable()
 
@@ -17,7 +19,14 @@ export class AppInterceptor implements HttpInterceptor{
                 const req = request.clone({
                     headers : new HttpHeaders().append('Authorization', 'token')
                 });
-                return next.handle(req);
+                return next.handle(req).pipe(
+                    tap(event =>{},
+                    error=>{
+                        if(error instanceof HttpResponse){
+                            if(this.router.url.)
+                        }
+                    })
+                );
             }
         }
         
